@@ -36,3 +36,115 @@
     transform: rotate(360deg);
   }
 }
+
+.hero-container {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background: #fff;
+  min-height: 100vh;
+}
+
+.hero-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 32px 48px 0 48px;
+}
+
+.hero-logo {
+  height: 48px;
+}
+
+.hero-nav a {
+  margin: 0 16px;
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+}
+
+.login-btn, .signup-btn {
+  margin-left: 16px;
+  padding: 8px 20px;
+  border: none;
+  border-radius: 4px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.login-btn {
+  background: #fff;
+  color: #1976d2;
+  border: 1px solid #1976d2;
+}
+
+.signup-btn {
+  background: #1976d2;
+  color: #fff;
+}
+
+.hero-main {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 48px;
+}
+
+.hero-text {
+  max-width: 540px;
+}
+
+.hero-text h1 {
+  font-size: 2.8rem;
+  margin-bottom: 24px;
+  color: #222;
+}
+
+.hero-text p {
+  font-size: 1.25rem;
+  margin-bottom: 32px;
+  color: #555;
+}
+
+.cta-btn {
+  background: #1976d2;
+  color: #fff;
+  padding: 16px 32px;
+  border: none;
+  border-radius: 6px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.cta-btn:hover {
+  background: #125ea2;
+}
+
+.hero-image img {
+  max-width: 500px;
+  width: 100%;
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+}
+
+.upload-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 80vh;
+  text-align: center;
+}
+
+.upload-form {
+  margin-bottom: 32px;
+}
+
+.upload-image-preview img {
+  margin-top: 24px;
+  max-width: 600px;
+  width: 90vw;
+  height: auto;
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+}
