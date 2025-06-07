@@ -1,25 +1,37 @@
-import logo from './logo.svg';
 import './App.css';
+import React, { Component } from 'react';
+import Header from './components/Header';
+import Hero from './components/Hero';
+import SimulationUpload from './components/SimulationUpload';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+// Main App component controlling page navigation
+class App extends Component {
+  state = {
+    page: 'home'
+  };
+
+  // Handler to switch to the upload page
+  handleStartSimulating = () => {
+    this.setState({ page: 'upload' });
+  };
+
+  // Handler to switch to the home page
+  handleGoHome = () => {
+    this.setState({ page: 'home' });
+  };
+
+  render() {
+    return (
+      <div className="hero-container">
+        <Header onLogoClick={this.handleGoHome} /> {/* Pass handler to Header */}
+        {this.state.page === 'home' ? (
+          <Hero onStart={this.handleStartSimulating} />
+        ) : (
+          <SimulationUpload />
+        )}
+      </div>
+    );
+  }
 }
 
 export default App;
