@@ -14,7 +14,9 @@ origins = [
 
 app.add_middleware(
       CORSMiddleware,
-      allow_origins=origins
+      allow_origins=origins,
+      allow_methods=["*"],
+      allow_headers=["*"],
 )
 
 class SimulationBase(BaseModel):
@@ -22,3 +24,33 @@ class SimulationBase(BaseModel):
     angle_of_attack: float
     output_path: str
     ssim_score: float
+
+class SimulationModel(SimulationBase):
+    id: int
+    created_at: str
+
+    class Config:
+        orm_mode = True
+def get_db():
+    db = SessionLocal()
+    try:
+        yield db
+    finally:
+        db.close()
+
+db_dependency = Annotated[Session, Depends(get_db)]
+
+models.Base.metadata.create_all(bind=engine)
+
+@app.post("/simulations/", response_model=SimulationModel)
+async def submit_simulation(simulation: SimulationBase, db: db_dependency):
+      db_simulation = models.Simulation(
+        input_path=simulation.input_path,
+        angle_of_attack=simulation.angle_of_attack,
+        output_path=simulation.output_path,
+        ssim_score=simulation.ssim_score
+      )
+      db.add(db_simulation)
+      db.commit()
+      db.refresh(db_simulation)
+      return db_simulation
