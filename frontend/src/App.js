@@ -1,8 +1,8 @@
 import './App.css';
 import React, { Component } from 'react';
-import Header from './components/Header';
-import Hero from './components/Hero';
-import SimulationUpload from './components/SimulationUpload';
+import Header from './components/Header/Header';
+import Hero from './components/Hero/Hero';
+import SimulationUpload from './components/SimulationUpload/SimulationUpload';
 
 // Main App component controlling page navigation
 class App extends Component {
