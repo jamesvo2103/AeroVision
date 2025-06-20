@@ -1,37 +1,24 @@
 import './App.css';
-import React, { Component } from 'react';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from './components/Header/Header';
 import Hero from './components/Hero/Hero';
 import SimulationUpload from './components/SimulationUpload/SimulationUpload';
+import Overview from './components/Overview/Overview'; // Import your Overview page
 
-// Main App component controlling page navigation
-class App extends Component {
-  state = {
-    page: 'home'
-  };
-
-  // Handler to switch to the upload page
-  handleStartSimulating = () => {
-    this.setState({ page: 'upload' });
-  };
-
-  // Handler to switch to the home page
-  handleGoHome = () => {
-    this.setState({ page: 'home' });
-  };
-
-  render() {
-    return (
+function App() {
+  return (
+    <Router>
       <div className="hero-container">
-        <Header onLogoClick={this.handleGoHome} /> {/* Pass handler to Header */}
-        {this.state.page === 'home' ? (
-          <Hero onStart={this.handleStartSimulating} />
-        ) : (
-          <SimulationUpload />
-        )}
+        <Header />
+        <Routes>
+          <Route path="/" element={<Hero />} />
+          <Route path="/upload" element={<SimulationUpload />} />
+          <Route path="/overview" element={<Overview />} />
+        </Routes>
       </div>
-    );
-  }
+    </Router>
+  );
 }
 
 export default App;

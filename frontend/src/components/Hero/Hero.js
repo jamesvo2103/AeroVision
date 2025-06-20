@@ -1,6 +1,9 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
-function Hero({ onStart }) {
+function Hero() {
+  const navigate = useNavigate();
+
   return (
     <main className="hero-main">
       <div className="hero-text">
@@ -8,7 +11,7 @@ function Hero({ onStart }) {
         <p>
           AeroVision empowers engineers to innovate faster with airflow simulation.
         </p>
-        <button className="cta-btn" onClick={onStart}>Start Simulating Now</button>
+        <button className="cta-btn" onClick={() => navigate('/upload')}>Start Simulating Now</button>
       </div>
       <div className="hero-image">
         <img
