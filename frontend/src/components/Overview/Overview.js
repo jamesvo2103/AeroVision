@@ -74,7 +74,7 @@ function Overview() {
         {/* Feature 3 & 4 Combined - image on the left */}
         <div className="feature-row">
           <img
-            src="https://sdmntprsouthcentralus.oaiusercontent.com/files/00000000-fe84-61f7-b526-6a374bb0e451/raw?se=2025-06-20T17%3A27%3A19Z&sp=r&sv=2024-08-04&sr=b&scid=5735b2dc-73c5-5910-9442-48670268602e&skoid=c953efd6-2ae8-41b4-a6d6-34b1475ac07c&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2025-06-20T16%3A13%3A29Z&ske=2025-06-21T16%3A13%3A29Z&sks=b&skv=2024-08-04&sig=GmWS9olWGKvBIGxUcQMlaUnXT9PBAAcSaZpYEXOUABE%3D"
+            src="value.jpg"
             alt="Affordable and Educational Value"
             className="feature-img"
           />

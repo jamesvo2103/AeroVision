@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-
-const logoUrl = "https://innovationspace.ansys.com/wp-content/uploads/2024/08/Airfoil-Geometry-and-Aerodynamics.png";
+const logoUrl = "aerovision_logo.png"; // Replace with your actual logo URL
 
 // Header component: displays logo and navigation links
 function Header() {
