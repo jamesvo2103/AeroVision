@@ -1,26 +1,26 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const logoUrl = "https://innovationspace.ansys.com/wp-content/uploads/2024/08/Airfoil-Geometry-and-Aerodynamics.png";
 
 // Header component: displays logo and navigation links
-function Header({ onLogoClick }) {
+function Header() {
   return (
     <header className="hero-header">
-      {/* Logo is now clickable */}
-      <img
-        src={logoUrl}
-        alt="AeroVision Logo"
-        className="hero-logo"
-        style={{ cursor: 'pointer' }}
-        onClick={onLogoClick}
-      />
+      {/* Logo links to home page */}
+      <Link to="/">
+        <img
+          src={logoUrl}
+          alt="AeroVision Logo"
+          className="hero-logo"
+          style={{ cursor: 'pointer' }}
+        />
+      </Link>
       <nav className="hero-nav">
-        <a href="#product">Product</a>
-        <a href="#solutions">Solutions</a>
-        <a href="#resources">Resources</a>
-        <a href="#pricing">Pricing</a>
-        <button className="login-btn">Log In</button>
-        <button className="signup-btn">Sign Up</button>
+        <Link to="/">Home</Link>
+        <Link to="/overview">Overview</Link>
+        <Link to="/upload">Simulate</Link>
+        {/* Add more links as needed */}
       </nav>
     </header>
   );
