@@ -41,7 +41,7 @@ function SimulationUpload() {
     formData.append('angle', angle);
 
     try {
-      const response = await fetch('/api/upload', {
+      const response = await fetch('http://localhost:8000/simulations/', {
         method: 'POST',
         body: formData,
       });

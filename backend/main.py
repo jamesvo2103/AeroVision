@@ -4,6 +4,7 @@ from sqlalchemy.orm import Session
 from pydantic import BaseModel
 from database import SessionLocal, engine
 import models 
+import datetime
 from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
@@ -27,7 +28,7 @@ class SimulationBase(BaseModel):
 
 class SimulationModel(SimulationBase):
     id: int
-    created_at: str
+    created_at: datetime.datetime
 
     class Config:
         orm_mode = True
