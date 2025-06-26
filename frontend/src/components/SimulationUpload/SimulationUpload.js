@@ -38,7 +38,7 @@ function SimulationUpload() {
     }
     const formData = new FormData();
     formData.append('file', file);
-    formData.append('angle', angle);
+    formData.append('angle_of_attack', angle);
 
     try {
       const response = await fetch('http://localhost:8000/simulations/', {

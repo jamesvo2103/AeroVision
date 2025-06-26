@@ -1,4 +1,4 @@
-from fastapi import FastAPI, HTTPException, Depends
+from fastapi import FastAPI, HTTPException, Depends, UploadFile, File, Form
 from typing import Annotated
 from sqlalchemy.orm import Session
 from pydantic import BaseModel
@@ -6,6 +6,8 @@ from database import SessionLocal, engine
 import models 
 import datetime
 from fastapi.middleware.cors import CORSMiddleware
+import os
+os.makedirs("uploads", exist_ok=True)
 
 app = FastAPI()
 
@@ -44,14 +46,27 @@ db_dependency = Annotated[Session, Depends(get_db)]
 models.Base.metadata.create_all(bind=engine)
 
 @app.post("/simulations/", response_model=SimulationModel)
-async def submit_simulation(simulation: SimulationBase, db: db_dependency):
-      db_simulation = models.Simulation(
-        input_path=simulation.input_path,
-        angle_of_attack=simulation.angle_of_attack,
-        output_path=simulation.output_path,
-        ssim_score=simulation.ssim_score
-      )
-      db.add(db_simulation)
-      db.commit()
-      db.refresh(db_simulation)
-      return db_simulation
+async def submit_simulation(
+    db: db_dependency,
+    file: UploadFile = File(...),
+    angle_of_attack: float = Form(...)
+):
+    # Save the uploaded file to disk (example)
+    file_location = f"uploads/{file.filename}"
+    with open(file_location, "wb") as f:
+        f.write(await file.read())
+
+    # Example: You can set output_path and ssim_score as needed
+    output_path = "output/path"
+    ssim_score = 0.0
+
+    db_simulation = models.Simulation(
+        input_path=file_location,
+        angle_of_attack=angle_of_attack,
+        output_path=output_path,
+        ssim_score=ssim_score
+    )
+    db.add(db_simulation)
+    db.commit()
+    db.refresh(db_simulation)
+    return db_simulation
