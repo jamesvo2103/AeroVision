@@ -1,0 +1,314 @@
+.upload-container {
+  max-width: 420px;
+  margin: 40px auto;
+  padding: 32px 24px;
+  background: #f7fafd;
+  border-radius: 12px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.07);
+}
+
+.upload-form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.upload-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.external-link-btn {
+  display: inline-block;
+  padding: 8px 18px;
+  background: #1976d2;
+  color: #fff;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 600;
+  border: none;
+  transition: background 0.2s;
+  cursor: pointer;
+}
+
+.external-link-btn:hover {
+  background: #125ea2;
+}
+
+.upload-field {
+  margin-bottom: 12px;
+}
+
+.sim-upload-field {
+  margin: 18px 0 0 0;
+}
+
+.upload-submit-btn {
+  padding: 10px 22px;
+  background: #1976d2;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.sim-submit-btn {
+  padding: 10px 22px;
+  background: #1976d2;
+  color: #fff;
+  border-radius: 6px;
+  border: none;
+  font-weight: 600;
+  margin-left: 10px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.upload-submit-btn:hover {
+  background: #125ea2;
+}
+
+.sim-submit-btn:hover {
+  background:
+}
+
+.upload-image-preview {
+  margin-top: 18px;
+  text-align: center;
+}
+
+.upload-image-preview img {
+  max-width: 100%;
+  max-height: 220px;
+  border-radius: 8px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+}
+
+.sim-upload-page {
+  display: flex;
+  gap: 32px;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 40px 10px 60px 10px;
+  background: #f5f7fa;
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+
+.sim-guidelines-card {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+  padding: 28px 24px 18px 24px;
+  width: 340px;
+  min-width: 260px;
+  font-size: 1rem;
+}
+
+.sim-guidelines-card h3 {
+  margin-top: 0;
+  margin-bottom: 10px;
+  font-size: 1.18rem;
+  font-weight: 700;
+}
+
+.sim-guidelines-bold {
+  color: #1976d2;
+}
+
+.sim-guidelines-card ul {
+  margin: 0 0 10px 18px;
+  padding: 0;
+}
+
+.sim-guidelines-link {
+  color: #1976d2;
+  font-size: 0.98rem;
+  text-decoration: underline;
+}
+
+.sim-upload-card {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+  padding: 28px 32px 24px 32px;
+  width: 480px;
+  min-width: 280px;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.sim-label {
+  font-weight: 600;
+  margin-bottom: 6px;
+  display: block;
+}
+
+.sim-input {
+  width: 100%;
+  padding: 8px 10px;
+  border-radius: 6px;
+  border: 1px solid #cfd8dc;
+  font-size: 1rem;
+  margin-bottom: 10px;
+}
+
+.sim-dropzone {
+  border: 2px dashed #b0bec5;
+  border-radius: 8px;
+  padding: 32px 0;
+  text-align: center;
+  cursor: pointer;
+  margin-bottom: 8px;
+  background: #f7fafd;
+  transition: border-color 0.2s;
+}
+
+.sim-dropzone:hover {
+  border-color: #1976d2;
+}
+
+.sim-dropzone-content {
+  display: fixed;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.sim-dropzone-icon {
+  font-size: 2.2rem;
+  margin-bottom: 6px;
+}
+
+.sim-dropzone-browse {
+  font-size: 0.98rem;
+}
+
+.sim-browse-link {
+  color: #1976d2;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.sim-upload-success {
+  margin: 8px 0 0 0;
+  color: #388e3c;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.sim-upload-success-icon {
+  font-size: 1.2rem;
+}
+
+.sim-goal-section {
+  margin-top: 10px;
+}
+
+.sim-goal-options {
+  display: flex;
+  gap: 18px;
+  margin-top: 10px;
+  flex-wrap: wrap;
+}
+
+.sim-goal-btn {
+  flex: 1 1 120px;
+  min-width: 120px;
+  background: #f7fafd;
+  border: 2px solid #b0bec5;
+  border-radius: 8px;
+  padding: 18px 12px;
+  cursor: pointer;
+  text-align: left;
+  transition: border 0.2s, background 0.2s;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 1rem;
+  outline: none;
+}
+
+.sim-goal-btn.selected, .sim-goal-btn:active {
+  border: 2px solid #1976d2;
+  background: #e3f0fc;
+}
+
+.sim-goal-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.sim-goal-icon {
+  font-size: 1.5rem;
+  margin-bottom: 2px;
+}
+
+.sim-goal-desc {
+  font-size: 0.98rem;
+  color: #444;
+}
+
+.sim-goal-beta {
+  background: #ffd600;
+  color: #333;
+  font-size: 0.85em;
+  border-radius: 4px;
+  padding: 1px 6px;
+  margin-left: 4px;
+}
+
+.sim-upload-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.sim-cancel-btn, .sim-next-btn {
+  padding: 8px 22px;
+  border-radius: 6px;
+  border: none;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.sim-cancel-btn {
+  background: #ececec;
+  color: #333;
+}
+
+.sim-cancel-btn:hover {
+  background: #d3d3d3;
+}
+
+.sim-next-btn {
+  background: #1976d2;
+  color: #fff;
+}
+
+.sim-next-btn:hover {
+  background: #125ea2;
+}
+
+@media (max-width: 900px) {
+  .sim-upload-page {
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    padding: 20px 2vw 40px 2vw;
+  }
+  .sim-guidelines-card, .sim-upload-card {
+    width: 100%;
+    min-width: 0;
+    max-width: 600px;
+  }
+}
