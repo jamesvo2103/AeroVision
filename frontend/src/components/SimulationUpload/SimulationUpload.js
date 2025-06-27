@@ -107,8 +107,8 @@ function SimulationUpload() {
           >
             <option value="">Select angle</option>
             <option value="0">0°</option>
-            <option value="15">15°</option>
-            <option value="30">30°</option>
+            <option value="25">25°</option>
+            <option value="50">50°</option>
           </select>
         </div>
         {/* External link button and submit */}
