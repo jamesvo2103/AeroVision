@@ -8,6 +8,8 @@ import datetime
 from fastapi.middleware.cors import CORSMiddleware
 import os
 os.makedirs("uploads", exist_ok=True)
+import numpy as np
+import cv2
 
 app = FastAPI()
 
@@ -70,3 +72,24 @@ async def submit_simulation(
     db.commit()
     db.refresh(db_simulation)
     return db_simulation
+
+@app.post("/preprocess-image/")
+async def preprocess_image_endpoint(file: UploadFile = File(...)):
+    """
+    This endpoint receives an uploaded image of an airfoil,
+    processes it into a black and white format, and returns the result.
+    """
+    # 1. Read the uploaded image file into memory
+    contents = await file.read()
+    nparr = np.frombuffer(contents, np.uint8)
+    img = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
+
+    # 2. Call the processing function from the other file
+    processed_img_array = preprocess_airfoil(img)
+
+    # 3. Encode the processed image back to a format (like PNG)
+    # that can be sent in an API response.
+    _, encoded_img = cv2.imencode(".png", processed_img_array)
+    
+    # 4. Return the processed image
+    return StreamingResponse(io.BytesIO(encoded_img.tobytes()), media_type="image/png")
