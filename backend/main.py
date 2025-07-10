@@ -2,7 +2,7 @@ from fastapi import FastAPI, HTTPException, Depends, UploadFile, File, Form
 from typing import Annotated
 from sqlalchemy.orm import Session
 from pydantic import BaseModel
-from database import SessionLocal, engine
+from AeroVision.backend.database import SessionLocal, engine
 import models 
 import datetime
 from fastapi.middleware.cors import CORSMiddleware
@@ -10,6 +10,9 @@ import os
 os.makedirs("uploads", exist_ok=True)
 import numpy as np
 import cv2
+
+from .image_processing import preprocess_airfoil
+from ml_model.predictor import model_predictor
 
 app = FastAPI()
 
@@ -73,23 +76,29 @@ async def submit_simulation(
     db.refresh(db_simulation)
     return db_simulation
 
-@app.post("/preprocess-image/")
-async def preprocess_image_endpoint(file: UploadFile = File(...)):
+@app.post("/predict-airflow/",
+          tags=["Prediction"],
+          summary="Generate Airflow Visualization")
+async def predict_airflow_endpoint(
+    angle_of_attack: int = Form(...),
+    file: UploadFile = File(...)
+):
     """
-    This endpoint receives an uploaded image of an airfoil,
-    processes it into a black and white format, and returns the result.
+    This endpoint handles the full workflow, now including angle of attack.
     """
-    # 1. Read the uploaded image file into memory
     contents = await file.read()
     nparr = np.frombuffer(contents, np.uint8)
-    img = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
+    original_img = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
 
-    # 2. Call the processing function from the other file
-    processed_img_array = preprocess_airfoil(img)
-
-    # 3. Encode the processed image back to a format (like PNG)
-    # that can be sent in an API response.
-    _, encoded_img = cv2.imencode(".png", processed_img_array)
+    processed_input_img = preprocess_airfoil(original_img)
     
-    # 4. Return the processed image
+    # Pass both the image and the angle to the predictor
+    output_visualization_img = model_predictor.predict(
+        input_image=processed_input_img,
+        angle_of_attack=angle_of_attack
+    )
+
+    output_visualization_img_rgb = cv2.cvtColor(output_visualization_img, cv2.COLOR_BGR2RGB)
+    success, encoded_img = cv2.imencode(".png", output_visualization_img_rgb)
+    
     return StreamingResponse(io.BytesIO(encoded_img.tobytes()), media_type="image/png")
