@@ -1,4 +1,4 @@
-from AeroVision.backend.database import Base
+from backend.database import Base
 from sqlalchemy import Column, Integer, String, Float, DateTime
 from datetime import datetime
 class Simulation(Base):

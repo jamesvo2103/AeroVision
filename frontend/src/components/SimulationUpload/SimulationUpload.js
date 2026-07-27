@@ -6,6 +6,10 @@ function SimulationUpload() {
   // State for file, simulation goal, and simulation name
   const [file, setFile] = useState(null);
   const [angle, setAngle] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [resultUrl, setResultUrl] = useState(null);
+  const [inputUrl, setInputUrl] = useState(null);
+  const [error, setError] = useState('');
 
   // Handle file input change
   const handleFileChange = (e) => {
@@ -29,7 +33,7 @@ function SimulationUpload() {
     setAngle(e.target.value);
   };
 
-  // Submit form data to backend
+  // Submit form data to backend and show the generated airflow image
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!file || !angle) {
@@ -40,18 +44,25 @@ function SimulationUpload() {
     formData.append('file', file);
     formData.append('angle_of_attack', angle);
 
+    setLoading(true);
+    setError('');
+    setResultUrl(null);
+    setInputUrl(URL.createObjectURL(file));
+
     try {
-      const response = await fetch('http://localhost:8000/simulations/', {
+      const response = await fetch('http://localhost:8000/predict-airflow/', {
         method: 'POST',
         body: formData,
       });
-      if (response.ok) {
-        alert('Upload successful!');
-      } else {
-        alert('Upload failed.');
+      if (!response.ok) {
+        throw new Error(`Server returned ${response.status}`);
       }
+      const blob = await response.blob();
+      setResultUrl(URL.createObjectURL(blob));
     } catch (err) {
-      alert('An error occurred while uploading.');
+      setError('Prediction failed. Is the backend running on port 8000?');
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -121,11 +132,32 @@ function SimulationUpload() {
           >
             Get your own Airfoil
           </a>
-          <button type="submit" className="sim-submit-btn">
-            Submit
+          <button type="submit" className="sim-submit-btn" disabled={loading}>
+            {loading ? 'Generating…' : 'Submit'}
           </button>
         </div>
       </form>
+
+      {/* Results */}
+      {error && <div className="sim-upload-error">{error}</div>}
+      {(inputUrl || resultUrl) && (
+        <div className="sim-results">
+          {inputUrl && (
+            <figure className="sim-result-item">
+              <img src={inputUrl} alt="Input airfoil" />
+              <figcaption>Input airfoil</figcaption>
+            </figure>
+          )}
+          <figure className="sim-result-item">
+            {loading ? (
+              <div className="sim-result-loading">Generating airflow…</div>
+            ) : (
+              resultUrl && <img src={resultUrl} alt="Airflow output" />
+            )}
+            <figcaption>Airflow (AoA {angle}°)</figcaption>
+          </figure>
+        </div>
+      )}
     </div>
   );
 }
