@@ -310,3 +310,45 @@
     max-width: 600px;
   }
 }
+/* --- Prediction results --- */
+.sim-results {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  margin-top: 28px;
+}
+.sim-result-item {
+  margin: 0;
+  text-align: center;
+}
+.sim-result-item img {
+  width: 320px;
+  max-width: 100%;
+  border-radius: 8px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.12);
+  background: #fff;
+}
+.sim-result-item figcaption {
+  margin-top: 8px;
+  font-weight: 600;
+  color: #333;
+}
+.sim-result-loading {
+  width: 320px;
+  height: 240px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px dashed #b8c6d6;
+  border-radius: 8px;
+  color: #6b7c93;
+}
+.sim-upload-error {
+  margin-top: 20px;
+  padding: 12px 16px;
+  background: #fdecea;
+  color: #b71c1c;
+  border-radius: 6px;
+  text-align: center;
+}
